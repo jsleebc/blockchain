@@ -1,0 +1,286 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>equinox.io - packaging and distribution for self-updating Go apps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="equinox.io - rpm/deb/msi/pkg/homebrew native packaging, hosting, and cryptographically secure remote-updates for Golang programs">
+    <link rel="shortcut icon" href="//static.equinox.io/static/img/favicon.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="//static.equinox.io/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="//static.equinox.io/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="//static.equinox.io/static/img/favicon-16x16.png">
+    <link rel="manifest" href="//static.equinox.io/static/site.webmanifest">
+    <link rel="mask-icon" href="//static.equinox.io/static/img/safari-pinned-tab.svg" color="#00aba9">
+    <link rel="shortcut icon" href="//static.equinox.io/static/img/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="//static.equinox.io/static/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    
+<link rel="stylesheet" href="//static.equinox.io/static/css/bulma.min.css?h=sha512-Prf59lEkl3Xwqpi6pcH6QtK6DS3HRkA0fNrSJXHlAc7kIcat90vq1soW8CxCmgFosxvvzUmq2dG%2fKNpmLenvGA%3d%3d" integrity="sha512-Prf59lEkl3Xwqpi6pcH6QtK6DS3HRkA0fNrSJXHlAc7kIcat90vq1soW8CxCmgFosxvvzUmq2dG/KNpmLenvGA==" crossorigin="anonymous">
+<link rel="stylesheet" href="//static.equinox.io/static/css/font-awesome.min.css?h=sha512-PIAUVU8u1vAd0Sz1sS1bFE5F1YjGqm%2fscQJ%2bVIUJL9kNa8jtAWFUDMu5vynXPDprRRBqHrE8KKEsjA7z22J1FA%3d%3d" integrity="sha512-PIAUVU8u1vAd0Sz1sS1bFE5F1YjGqm/scQJ+VIUJL9kNa8jtAWFUDMu5vynXPDprRRBqHrE8KKEsjA7z22J1FA==" crossorigin="anonymous">
+<link rel="stylesheet" href="//static.equinox.io/static/css/equinox.css?h=sha512-d%2btYHVhW1gbLZTLbZJ1oEtaEgRI8OLO1UePSrtwH4OvVOr62b1RshpTaiR1t6nRImOcCB5E0UdqOGqeQlscr%2fA%3d%3d" integrity="sha512-d+tYHVhW1gbLZTLbZJ1oEtaEgRI8OLO1UePSrtwH4OvVOr62b1RshpTaiR1t6nRImOcCB5E0UdqOGqeQlscr/A==" crossorigin="anonymous">
+
+    
+    
+<link rel="stylesheet" href="//static.equinox.io/static/css/highlightjs/monokai.css?h=sha512-01IoCYOxfrlco%2fsMyB%2fyosPVeWewpmPFSihvvokHQCbCSblEPrhspq38vsC242bFPZWmnB4xucqm5KvC%2b93xTQ%3d%3d" integrity="sha512-01IoCYOxfrlco/sMyB/yosPVeWewpmPFSihvvokHQCbCSblEPrhspq38vsC242bFPZWmnB4xucqm5KvC+93xTQ==" crossorigin="anonymous">
+<script src="//static.equinox.io/static/js/highlight.pack.js?h=sha512-udIp3O946oiaIRO31PvMZZu8jgolWYbdM5T7BFqJRUnc9Ct3QeEgIh%2bkxxyf0loKTyPO82WIWhjt1uC1ohyoPA%3d%3d" integrity="sha512-udIp3O946oiaIRO31PvMZZu8jgolWYbdM5T7BFqJRUnc9Ct3QeEgIh+kxxyf0loKTyPO82WIWhjt1uC1ohyoPA==" crossorigin="anonymous"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+  </head>
+  <body>
+    <header id="shutdown">
+      Equinox is shutting down on <strong>September 30th, 2021</strong>. Read the full announcement <a href="/blog/shutting-down">here</a>.
+    </header>
+    
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="//static.equinox.io/static/img/brand.png" alt="Equinox">
+    </a>
+  </div>
+  <div class="navbar-menu">
+  	<div class="navbar-end">
+      <a class="navbar-item" href="/">Home</a>
+			<a class="navbar-item" href="/docs">Docs</a>
+      <a class="navbar-item" href="/pricing">Pricing</a>
+      <a class="navbar-item" href="/auth/login">Login</a>
+  	</div>
+  </div>
+</nav>
+<div class="tabs is-hidden-desktop is-marginless">
+  <ul>
+  	<li><a href="/">Home</a></li>
+  	<li><a href="/docs">Docs</a></li>
+    <li><a href="/pricing">Pricing</a></li>
+    <li><a href="/auth/login">Login</a></li>
+  </ul>
+</div>
+
+    
+    
+<section class="hero" id="featured">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <img src="//static.equinox.io/static/img/featured.png">
+      <h1 class="title">
+        Package &amp; distribute your Go apps
+      </h1>
+      <p>
+        Equinox helps you build, package and distribute self-updating Go apps to your customers.
+        <br>
+        It's perfect for CLI tools and on-prem Go software.
+        <br>
+      </p>
+      <a class="button is-large is-warning" href="/auth/signup">Get Started</a>
+    </div>
+  </div>
+</section>
+<div id="logos">
+  <h6 class="title is-6 has-text-centered">trusted by</h6>
+  <div class="columns is-multiline has-text-centered is-vcentered">
+    <div class="column">
+      <a class="cronitor" href="https://cronitor.io">
+        <img src="//static.equinox.io/static/img/cronitor-logo.png">
+      </a>
+    </div>
+    <div class="column">
+      <a class="ngrok" href="https://ngrok.com">
+        <img src="//static.equinox.io/static/img/ngrok-logo.png">
+      </a>
+    </div>
+    <div class="column">
+      <a class="rainforest" href="https://www.rainforestqa.com/">
+        <img src="//static.equinox.io/static/img/rainforest-logo.png">
+      </a>
+    </div>
+  </div>
+</div>
+<section class="section">
+  <div class="columns is-multiline">
+    <div class="column is-half-tablet is-one-third-desktop">
+      <article class="media">
+        <figure class="media-left">
+          <span class="icon is-large">
+            <i class="fa fa-tachometer fa-3x"></i>
+          </span>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Iterate Rapidly</strong>
+              <br>
+              Stop bundling up many changes into large releases. When your
+              customers can easily update their code, you can push new features
+              and fixes faster.  Start getting feedback immediately, just like you
+              do with your web services.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="column is-half-tablet is-one-third-desktop">
+      <article class="media">
+        <figure class="media-left">
+          <span class="icon is-large">
+            <i class="fa fa-folder-open fa-3x"></i>
+          </span>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Native Packages</strong>
+              <br>
+              Make sure installing your software feels like a native experience on all
+              platforms. Equinox packages your application into native installer formats
+              like MSI, pkg, rpm, deb and more.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="column is-half-tablet is-one-third-desktop">
+      <article class="media">
+        <figure class="media-left">
+          <span class="icon is-large">
+            <i class="fa fa-terminal fa-3x"></i>
+          </span>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Release Automatically</strong>
+              <br>
+              Equinox provides an easy to use commandline tool which makes it simple
+              to integrate with your existing build and release process. Automate
+              away the entire process of pushing updates to your clients.
+          </p></div>
+        </div>
+      </article>
+    </div>
+    <div class="column is-half-tablet is-one-third-desktop">
+      <article class="media">
+        <figure class="media-left">
+          <span class="icon is-large">
+            <i class="fa fa-tag fa-3x"></i>
+          </span>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Flexible Channels</strong>
+              <br>
+              Do you have some customers who are willing to run your latest code?
+              Push new releases to a beta channel first before making them stable and
+              allow your customers to choose the channel that is best for them.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="column is-half-tablet is-one-third-desktop">
+      <article class="media">
+        <figure class="media-left">
+          <span class="icon is-large">
+            <i class="fa fa-lock fa-3x"></i>
+          </span>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Be Safe</strong>
+              <br>
+              Downloading new code to run from the internet is fraught with peril.
+              Equinox makes it easy for you to use industry best-practices to sign 
+              your new code and let your clients automatically verify that the update
+              is authentic.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+   <div class="column is-half-tablet is-one-third-desktop">
+      <article class="media">
+        <figure class="media-left">
+          <span class="icon is-large">
+            <i class="fa fa-inbox fa-3x"></i>
+          </span>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Lower Support Costs</strong>
+              <br>
+              When you make it easy for your clients to keep your software up to date, they're
+              more likely to run the latest version of your code with all of your bug fixes. It
+              means fewer support questions about solved problems and fewer variables to consider
+              when diagnosing issues.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="column is-half-tablet is-one-third-desktop">
+      <article class="media">
+        <figure class="media-left">
+          <span class="icon is-large">
+            <i class="fa fa-bolt fa-3x"></i>
+          </span>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Bandwidth Optimized</strong>
+              <br>
+              Equinox delivers binary patches to clients instead of shipping entire binaries.
+              This greatly reduces the bandwidth and time required by clients to update.
+              Best of all, this happens automatically without any configuration.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="column is-half-tablet is-one-third-desktop">
+      <article class="media">
+        <figure class="media-left">
+          <span class="icon is-large">
+            <i class="fa fa-inbox fa-3x"></i>
+          </span>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Cross Platform</strong>
+              <br>
+              Equinox's updating strategy is tested to work properly across all major
+              operating systems and architectures. Updates work just as well on a
+              Raspberry Pi as they do on a Windows desktop.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+ </div>
+</section>
+
+    
+<footer class="footer">
+  <nav class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <span>
+          © Equinox Cloud, LLC 2023
+        </span>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-item">
+        <a href="mailto:contact@equinox.io">contact@equinox.io</a>
+        
+      </div>
+    </div>
+  
+</nav></footer>
+
+  
+
+</body></html>
